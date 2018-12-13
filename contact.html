@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello, I am Bob Smith</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <h1>Contact Form</h1>
+
+        <form action="https://formspree.io/microtrain1218@mailinator.com" method="POST">
+
+            <div>
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name">
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" name="_replyto">  
+            </div>
+
+            <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message"></textarea>
+            </div>
+
+            <div>
+                <input type="hidden" name="_subject" value="New submission!">
+            </div>
+
+            <div>
+                <input type="submit" value="Send">
+            </div>
+
+        </form>
+        
+    </body>
+</html>
