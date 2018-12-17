@@ -1,0 +1,74 @@
+h1, h2, h3 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h3{
+    font-style: italic;
+}
+
+.intro{
+    text-align: center;
+}
+
+.text-initial {
+    text-transform: initial;
+}
+
+@media only screen and (min-width:960px){
+    .cc-left{
+        float: left;
+        text-align: left; 
+        width: 33%;
+        margin-left: 17%;
+        box-sizing: border-box;
+    }
+
+    .cc-right{
+        float: right;
+        text-align: left;
+        width: 33%;
+        margin-right: 17%;
+        box-sizing: border-box;
+    }
+}
+
+.emp h3,
+.edu h3{
+    text-align: left;
+    font-style: normal;
+    clear: both;
+}
+
+.emp h3,
+.emp h4,
+.edu h3,
+.edu h4{
+    text-transform: initial;
+}
+
+.edu h3{
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.edu h4{
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    font-size: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+.emp h5{
+    font-style: italic;
+}
+
+th {
+    text-align: left;
+    font-weight: normal;
+    font-style: italic; 
+    padding-right: 2rem;
+}
