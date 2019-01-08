@@ -1,11 +1,14 @@
 <?php
-
+require '../config/keys.php';
 require '../core/Jason/src/Validation/Validate.php';
+require '../vendor/autoload.php';
 
 use Jason\Validation;
+use Mailgun\Mailgun;
 
 $message = null;
-
+$mgClient = new Mailgun('xxxx');
+$domain = "sandboxxxxx.mailgun.org";
 $valid = new Jason\Validation\Validate();
 
 $args = [
@@ -39,6 +42,23 @@ if(!empty($input)){
   $valid->check($input);
 
   if(empty($valid->errors)){
+
+    # Instantiate the client.
+    $mgClient = new Mailgun(MG_KEY);
+    $domain = MG_DOMAIN;
+
+    # Make the call to the client.
+    $result = $mgClient->sendMessage("$domain", array(
+      'from'    => "{$input['name']} <{$input['email']}>",
+      'to'      => 'Jason Snider <jsnider@microtrain.net>',
+      'subject' => $input['subject'],
+      'text'    => $input['message']
+      )
+    );
+
+    var_dump($result);
+
+
     $message = "<div class=\"alert alert-success\">Your form has been submitted!</div>";
   }else{
     $message = "<div class=\"alert alert-danger\">Your form has errors!</div>";
