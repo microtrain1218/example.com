@@ -43,6 +43,7 @@ if(!empty($input)){
 
   if(empty($valid->errors)){
 
+    /*
     # Instantiate the client.
     $mgClient = new Mailgun(MG_KEY);
     $domain = MG_DOMAIN;
@@ -57,9 +58,18 @@ if(!empty($input)){
     );
 
     var_dump($result);
+    */
+
+    var_dump($result);
+    $response = 200;
+
+    if($response === 200){
+      //$message = "<div class=\"alert alert-success\">Your form has been submitted!</div>";
+      header('LOCATION: thanks.php');
+    }
 
 
-    $message = "<div class=\"alert alert-success\">Your form has been submitted!</div>";
+
   }else{
     $message = "<div class=\"alert alert-danger\">Your form has errors!</div>";
   }
