@@ -1,7 +1,7 @@
 <?php
 
 function active($name){
-  $current = basename($_SERVER['PHP_SELF']);
+  $current = $_SERVER['REQUEST_URI'];
   if($current === $name){
     return 'active';
   }
@@ -30,6 +30,7 @@ function active($name){
 
     <?php endif; ?>
 
+    <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -43,7 +44,7 @@ function active($name){
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Bob Smith</a>
+        <a class="navbar-brand" href="/">Bob Smith</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,13 +52,16 @@ function active($name){
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="nav-link <?php echo active('index.php'); ?>" href="index.php">Home</a>
+                  <a class="nav-link <?php echo active('/'); ?>" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link <?php echo active('resume.php'); ?>" href="resume.php">Resume</a>
+                  <a class="nav-link <?php echo active('/resume.php'); ?>" href="resume.php">Resume</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link <?php echo active('contact.php'); ?>" href="contact.php">Contact</a>
+                  <a class="nav-link <?php echo active('/contact.php'); ?>" href="contact.php">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <?php echo active('/posts/'); ?>" href="posts">Posts</a>
                 </li>
             </ul>
         </div>
