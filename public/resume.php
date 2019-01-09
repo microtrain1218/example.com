@@ -57,7 +57,10 @@ $content = <<<EOT
 
 </section>
 
-<section cltifications:</th>
+<section class="certs">
+  <table>
+    <tr>
+      <th>Certifications:</th>
         <td>Agile Certified Scrum Master</td>
       </tr>
       <tr>
@@ -104,7 +107,7 @@ $content = <<<EOT
     <li>Full stack LAMP development(Linux, Apache, MySQL, PHP, Bash, Ajax).</li>
     <li>Recognized for the development of excellent business relationships, providing exemplary customer service.</li>
   </ul>
-</section>"certs">
+</section>
   <h2>Certitifications:</th>
         <td>Agile Certified Scrum Master</td>
       </tr>

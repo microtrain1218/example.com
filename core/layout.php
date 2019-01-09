@@ -8,6 +8,7 @@ function active($name){
 
   return null;
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -42,7 +43,7 @@ function active($name){
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">040218SX</a>
+        <a class="navbar-brand" href="#">Bob Smith</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
