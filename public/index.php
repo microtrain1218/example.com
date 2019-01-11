@@ -1,5 +1,5 @@
 <?php
-
+require '../core/functions.php';
 $meta=[];
 $meta['title']='My Website';
 $meta['description']='Stuff about me';

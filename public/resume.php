@@ -1,5 +1,5 @@
 <?php
-
+require '../core/functions.php';
 $meta=[];
 $meta['title']="Bob Smith's Resume";
 $meta['description']='Bob Smith, Resume, LAMP, Full Stack, Hybrid Mobile';
