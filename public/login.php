@@ -14,7 +14,8 @@ if(!empty($input)){
 
   //DB lookup
   $sql = 'SELECT * FROM users WHERE email = :email';
-  $stmt = $pdo->prepare($sql)->execute(['email'=>$input['email']]);
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute(['email'=>$input['email']]);
   $row = $stmt->fetch();
 
   if($input['email']===$row['email']){
