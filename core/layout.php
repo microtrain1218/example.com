@@ -63,18 +63,24 @@ function active($name){
                 <li class="nav-item">
                   <a class="nav-link <?php echo active('/posts/'); ?>" href="posts">Posts</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link <?php echo active('/users/'); ?>" href="users">Users</a>
-                </li>
+                <?php if(!empty($_SESSION['user']['id'])): ?>
 
-                <li class="nav-item">
-                  <?php if(!empty($_SESSION['user']['id'])): ?>
-                    <a class="nav-link" href="logout.php">Logout</a>
-                  <?php else: ?>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="inqueries">Inqueries</a>
+                      <a class="dropdown-item" href="users">Users</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="logout.php">Logout</a>
+                    </div>
+                  </li>
+                <?php else: ?>
+                  <li class="nav-item">
                     <a class="nav-link <?php echo active('/login.php'); ?>" href="login.php">Login</a>
-                  <?php endif; ?>
-                </li>
-
+                  </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
