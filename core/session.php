@@ -6,6 +6,7 @@ if(!empty($_SESSION['user']['id'])){
 }
 
 if($hasSession===false){
-  //var_dump($_SESSION);
-  header('Location: /login.php');
+  $goto = $_SERVER['PHP_SELF'];
+  $qs = !empty($_SERVER['QUERY_STRING'])?"?{$_SERVER['QUERY_STRING']}":false;
+  header('Location: /login.php?goto='.$goto.$qs);
 }

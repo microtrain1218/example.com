@@ -30,7 +30,8 @@ $args = [
     'id'=>FILTER_SANITIZE_STRING, //strips HMTL
     'first_name'=>FILTER_SANITIZE_STRING, //strips HMTL
     'last_name'=>FILTER_SANITIZE_STRING, //strips HMTL
-    'email'=>FILTER_SANITIZE_EMAIL
+    'email'=>FILTER_SANITIZE_EMAIL,
+    'password'=>FILTER_UNSAFE_RAW
 ];
 
 $input = filter_input_array(INPUT_POST, $args);
@@ -40,15 +41,26 @@ if(!empty($input)){
     //Strip white space, begining and end
     $input = array_map('trim', $input);
 
+    $hashSQL=false;
+    if(!empty($input['password'])){
+      $hash = password_hash(
+        $input['password'],
+        PASSWORD_BCRYPT,
+        ['cost'=>14]
+      );
+      $hashSQL=",password='{$hash}'";
+    }
+
     //Sanitized insert
-    $sql = 'UPDATE
+    $sql = "UPDATE
         users
       SET
         first_name=:first_name,
         last_name=:last_name,
         email=:email
+        {$hashSQL}
       WHERE
-        id=:id';
+        id=:id";
 
     if($pdo->prepare($sql)->execute([
       'first_name'=>$input['first_name'],
@@ -82,6 +94,11 @@ $content = <<<EOT
 <div class="form-group">
     <label for="email">Email</label>
     <input id="email" value="{$row['email']}" name="email" type="text" class="form-control">
+</div>
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" class="form-control">
 </div>
 
 <div class="form-group">

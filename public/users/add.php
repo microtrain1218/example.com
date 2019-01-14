@@ -9,7 +9,8 @@ $message=null;
 $args = [
     'first_name'=>FILTER_SANITIZE_STRING, //strips HMTL
     'last_name'=>FILTER_SANITIZE_STRING, //strips HMTL
-    'email'=>FILTER_SANITIZE_EMAIL
+    'email'=>FILTER_SANITIZE_EMAIL,
+    'password'=>FILTER_UNSAFE_RAW
 ];
 
 $input = filter_input_array(INPUT_POST, $args);
@@ -19,6 +20,12 @@ if(!empty($input)){
     //Strip white space, begining and end
     $input = array_map('trim', $input);
 
+    $hash = password_hash(
+      $input['password'],
+      PASSWORD_BCRYPT,
+      ['cost'=>14]
+    );
+
     //Sanitiezed insert
     $sql = 'INSERT INTO
         users
@@ -26,12 +33,14 @@ if(!empty($input)){
         id=uuid(),
         first_name=?,
         last_name=?,
-        email=?';
+        email=?,
+        password=?';
 
     if($pdo->prepare($sql)->execute([
         $input['first_name'],
         $input['last_name'],
-        $input['email']
+        $input['email'],
+        $hash
     ])){
       header('LOCATION:/users/view.php?email=' . $input['email']);
     }else{
@@ -57,6 +66,11 @@ $content = <<<EOT
 <div class="form-group">
     <label for="email">Email</label>
     <input id="email" name="email" type="text" class="form-control">
+</div>
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" class="form-control">
 </div>
 
 <div class="form-group">
