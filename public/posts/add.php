@@ -35,7 +35,8 @@ if(!empty($input)){
         slug=?,
         body=?,
         meta_keywords=?,
-        meta_description=?';
+        meta_description=?,
+        user_id='.$_SESSION['user']['id'];
 
     if($pdo->prepare($sql)->execute([
         $input['title'],

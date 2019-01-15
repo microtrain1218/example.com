@@ -16,9 +16,11 @@ $meta['title']=$row['title'];
 $meta['description']=$row['meta_description'];
 $meta['keywords']=$row['meta_keywords'];
 
+$body = nl2br($row['body']);
+
 $content=<<<EOT
 <h1>{$row['title']}</h1>
-{$row['body']}
+{$body}
 
 <hr>
 <div>

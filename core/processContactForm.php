@@ -38,35 +38,24 @@ if(!empty($input)){
 
   if(empty($valid->errors)){
 
-    $args = [
-      'name'=>FILTER_SANITIZE_STRING,
-      'message'=>FILTER_SANITIZE_STRING,
-      'email'=>FILTER_SANITIZE_EMAIL
-    ];
+    $input = array_map('trim', $input);
 
-    $input = filter_input_array(INPUT_POST, $args);
+    $sql = 'INSERT INTO
+        inqueries
+      SET
+        id=uuid(),
+        name=?,
+        body=?,
+        email=?';
 
-    if(!empty($input)){
-
-      $input = array_map('trim', $input);
-
-      $sql = 'INSERT INTO
-          inqueries
-        SET
-          id=uuid(),
-          name=?,
-          body=?,
-          email=?';
-
-      if($pdo->prepare($sql)->execute([
-        $input['name'],
-        $input['message'],
-        $input['email']
-      ])){
-        header('LOCATION:/thanks.php');
-      }else{
-        $message = 'Something bad happened';
-      }
+    if($pdo->prepare($sql)->execute([
+      $input['name'],
+      $input['message'],
+      $input['email']
+    ])){
+      header('LOCATION:/thanks.php');
+    }else{
+      $message = 'Something bad happened';
     }
 
   }else{
